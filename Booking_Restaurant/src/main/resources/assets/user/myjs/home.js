@@ -16,9 +16,19 @@ function showMsg() {
     if (message === null) {
         return;
     } else if (message.includes("successfully")) {
-        webToast.success(message);
+        webToast.Success({
+            status: 'Đã đăng nhập thành công!',
+            message: 'Chúc quý khách trải nghiệm vui vẻ.',
+            delay: 2000,
+            align: 'topright'
+        })
     } else {
-        webToast.error(message);
+        webToast.Danger({
+            status: 'Đăng nhập thất bại!',
+            message: 'Vui lòng kiểm tra và đăng nhập lại.',
+            delay: 2000,
+            align: 'topright'
+        })
     }
 }
 
@@ -79,7 +89,7 @@ function validateFullName(fullName) {
 }
 
 function validateForm() {
-    var phoneNumber = document.getElementById("numberPhone").value;
+    var phoneNumber = document.getElementById("phoneNumber").value;
     var email = document.getElementById("email").value;
     var fullName = document.getElementById("fullName").value;
     var password = document.getElementById("password").value;
@@ -104,7 +114,12 @@ function validateForm() {
     }
 
     if (errorMessage !== "") {
-        toastr.error(errorMessage);
+        webToast.Danger({
+            status: errorMessage,
+            message: 'error',
+            delay: 6000,
+            align: 'topright'
+        });
         return false;
     }
 
