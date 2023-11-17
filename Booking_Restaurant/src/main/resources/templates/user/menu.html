@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Menu</title>
+    <th:block th:replace="~{layoutUser :: header-link}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{layoutUser :: my-topper}"></th:block>
+<th:block th:replace="~{layoutUser :: my-navbar}"></th:block>
+<!-- END nav -->
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url(assets/user/images/bg_3.jpg);"
+         data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center mb-4">
+                <h1 class="mb-2 bread">Specialties</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                        class="ion-ios-arrow-forward"></i></a></span> <span>Menu <i
+                        class="ion-ios-arrow-forward"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="ftco-search">
+            <div class="row">
+                <div class="col-md-12 nav-link-wrap menu">
+                    <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist"
+                         aria-orientation="vertical">
+                        <a class="nav-link ftco-animate active col-md-3" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
+                           role="tab" aria-controls="v-pills-1" aria-selected="true">Breakfast</a>
+
+                        <a class="nav-link ftco-animate col-md-3" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                           role="tab" aria-controls="v-pills-2" aria-selected="false">Lunch</a>
+
+                        <a class="nav-link ftco-animate col-md-3" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3"
+                           role="tab" aria-controls="v-pills-3" aria-selected="false">Dinner</a>
+
+                        <a class="nav-link ftco-animate col-md-3" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4"
+                           role="tab" aria-controls="v-pills-4" aria-selected="false">Drinks</a>
+                    </div>
+                </div>
+                <div class="col-md-12 tab-wrap">
+
+                    <div class="tab-content" id="v-pills-tabContent">
+                    <!--BREAKFAST-->
+                        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
+                             aria-labelledby="day-1-tab">
+                            <div class="row no-gutters d-flex align-items-stretch">
+
+                                <div class="col-md-12 col-lg-6 d-flex align-self-stretch menu" th:each="breakfastFood : ${breakfastFood}">
+                                    <div class="menus d-sm-flex ftco-animate align-items-stretch">
+                                        <div class="menu-img img" th:style="'background-image: url(' + ${breakfastFood.images.get(0)} + ')'"></div>
+                                        <div class="text d-flex align-items-center">
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="one-half">
+                                                        <h3 th:text="${breakfastFood.foodName}"></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="one-forth">
+                                                    <span class="price" th:text="${breakfastFood.price.intValue()} + ' VNĐ'"></span>
+                                                </div>
+                                                <p th:text="${breakfastFood.description}"></p>
+                                                <p><a href="#" class="btn btn-primary">Order now</a></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <!--LUNCH-->
+                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                            <div class="row no-gutters d-flex align-items-stretch">
+                                <div class="col-md-12 col-lg-6 d-flex align-self-stretch menu" th:each="lunchFood : ${lunchFood}">
+                                    <div class="menus d-sm-flex ftco-animate align-items-stretch">
+                                        <div class="menu-img img" th:style="'background-image: url(' + ${lunchFood.images.get(0)} + ')'"></div>
+                                        <div class="text d-flex align-items-center">
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="one-half">
+                                                        <h3 th:text="${lunchFood.foodName}"></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="one-forth">
+                                                    <span class="price" th:text="${lunchFood.price.intValue()} + ' VNĐ'"></span>
+                                                </div>
+                                                <p th:text="${lunchFood.description}"></p>
+                                                <p><a href="#" class="btn btn-primary">Order now</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--DINNER-->
+                        <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                            <div class="row no-gutters d-flex align-items-stretch">
+                                <div class="col-md-12 col-lg-6 d-flex align-self-stretch menu" th:each="dinnerFood : ${dinnerFood}">
+                                    <div class="menus d-sm-flex ftco-animate align-items-stretch">
+                                        <div class="menu-img img" th:style="'background-image: url(' + ${dinnerFood.images.get(0)} + ')'"></div>
+                                        <div class="text d-flex align-items-center">
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="one-half">
+                                                        <h3 th:text="${dinnerFood.foodName}"></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="one-forth">
+                                                    <span class="price" th:text="${dinnerFood.price.intValue()} + ' VNĐ'"></span>
+                                                </div>
+                                                <p th:text="${dinnerFood.description}"></p>
+                                                <p><a href="#" class="btn btn-primary">Order now</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--DRINKS-->
+                        <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-day-4-tab">
+                            <div class="row no-gutters d-flex align-items-stretch">
+                                <div class="col-md-12 col-lg-6 d-flex align-self-stretch menu" th:each="drinks : ${drinks}">
+                                    <div class="menus d-sm-flex ftco-animate align-items-stretch">
+                                        <div class="menu-img img" th:style="'background-image: url(' + ${drinks.images.get(0)} + ')'"></div>
+                                        <div class="text d-flex align-items-center">
+                                            <div>
+                                                <div class="d-flex">
+                                                    <div class="one-half">
+                                                        <h3 th:text="${drinks.foodName}"></h3>
+                                                    </div>
+                                                </div>
+                                                <div class="one-forth">
+                                                    <span class="price" th:text="${drinks.price.intValue()} + ' VNĐ'"></span>
+                                                </div>
+                                                <p th:text="${drinks.description}"></p>
+                                                <p><a href="#" class="btn btn-primary">Order now</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block th:replace="~{layoutUser :: my-footer}"></th:block>
+<th:block th:replace="~{layoutUser :: my-loader}"></th:block>
+<th:block th:replace="~{layoutUser :: my-script}"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+.error {
+    color: red;
+    padding: 3px;
+    display: none;
+}
+
+.input-custom:invalid[focused="true"]~span {
+    display: block;
+}
+
+#header-price i {
+    display: none;
+}
+.avatar-preview{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 1em;
+}
+
+#images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imageContainer {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.delete-button {
+    position: absolute;
+    margin-right: 20px;
+    right: 0;
+    top: 0;
+}
