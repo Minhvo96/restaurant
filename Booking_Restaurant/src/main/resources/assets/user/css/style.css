@@ -4789,7 +4789,7 @@ a.close.disabled {
   outline: 0; }
 
 .modal-backdrop {
-  /*position: fixed;*/
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 1040;
@@ -9806,4 +9806,8 @@ textarea.form-control {
 
 #confirm-modal{
   max-width: 700px;
+}
+
+.hide {
+  display: none;
 }

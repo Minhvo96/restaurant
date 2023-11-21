@@ -1,6 +1,8 @@
+let customer  = {} ;
 async function getCurrentCustomer() {
     let res = await fetch("http://localhost:8080/user/api/customer-detail");
-    return await res.json();
+    customer = await res.json()
+    return customer;
 }
 
 function getQueryParam(key) {
@@ -33,14 +35,14 @@ function showMsg() {
 }
 
 window.onload = async () => {
+    await getCurrentCustomer();
+    console.log(customer)
+
     await handleLogBtn();
     showMsg();
 }
 
 async function handleLogBtn() {
-    let customer = await getCurrentCustomer();
-    console.log(customer);
-
     const loginBtn = document.getElementById("log-btn");
     const eRegisterLi = document.getElementById("menu-register");
 
@@ -67,35 +69,35 @@ async function handleLogBtn() {
         eRegisterLi.innerHTML = "";
 
         if (customer.role === "ROLE_ADMIN") {
-            eRegisterLi.innerHTML = `<li class="nav-item"><a style="color: white href="/food">Dashboard</a></li>`;
+            eRegisterLi.innerHTML = `<li class="nav-item"><a style="color: white" href="/food">Dashboard</a></li>`;
         }
     }
 }
 
 // validate register
 function validatePhoneNumber(phoneNumber) {
-    var re = /^[0-9]+$/;
+    const re = /^[0-9]+$/;
     return re.test(phoneNumber);
 }
 
 function validateEmail(email) {
-    var re = /\S+@\S+\.\S+/;
+    const re = /\S+@\S+\.\S+/;
     return re.test(email);
 }
 
 function validateFullName(fullName) {
-    var re = /^[^\d\s]+(\s+[^\d\s]+)*$/;
+    const re = /^[^\d\s]+(\s+[^\d\s]+)*$/;
     return re.test(fullName);
 }
 
 function validateForm() {
-    var phoneNumber = document.getElementById("phoneNumber").value;
-    var email = document.getElementById("email").value;
-    var fullName = document.getElementById("fullName").value;
-    var password = document.getElementById("password").value;
-    var confirmPassword = document.getElementById("confirmPassword").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const email = document.getElementById("email").value;
+    const fullName = document.getElementById("fullName").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    var errorMessage = "";
+    let errorMessage = "";
 
     if (!validateFullName(fullName)) {
         errorMessage += "- FULL NAME can't contain numbers or blank.<br>";
@@ -113,6 +115,10 @@ function validateForm() {
         errorMessage += "- PASSWORD do not match.<br>";
     }
 
+    if (password == null || confirmPassword == null) {
+        errorMessage += "- Please fill Password/Confirm Password input<br>";
+    }
+
     if (errorMessage !== "") {
         webToast.Danger({
             status: errorMessage,
@@ -125,3 +131,10 @@ function validateForm() {
 
     return true;
 }
+$('#phoneNumber').on('click', () => {
+    $('.text-danger').addClass('hide')
+})
+
+$('#email').on('click', () => {
+    $('.text-danger').addClass('hide')
+})

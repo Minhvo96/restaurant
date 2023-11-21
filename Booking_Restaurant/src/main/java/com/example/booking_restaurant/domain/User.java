@@ -2,6 +2,7 @@ package com.example.booking_restaurant.domain;
 
 import com.example.booking_restaurant.domain.enumration.ERole;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Table(name = "users")
@@ -19,6 +20,7 @@ public class User {
 
     private String email;
 
+    @NotBlank(message = "Password không được để trống")
     private String password;
 
     @Enumerated(EnumType.STRING)

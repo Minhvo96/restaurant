@@ -3,21 +3,11 @@ const eDoneBtn = document.getElementById("done-btn");
 const eConfirm_body = document.getElementById("confirm-body");
 
 let data = {};
-let customer;
-
-async function getCurrentCustomer() {
-    let res = await fetch("http://localhost:8080/user/api/customer-detail");
-    return await res.json();
-}
+let checkVip = false;
 
 async function getVipTableAvailable() {
     let res = await fetch("http://localhost:8080/api/booking/checkVip");
-    return await res.json();
-}
-
-window.onload = async () => {
-    customer = await getCurrentCustomer();
-    console.log(customer)
+    return res;
 }
 
 makeReservationButton.addEventListener('click', async function () {
@@ -77,20 +67,28 @@ makeReservationButton.addEventListener('click', async function () {
         return;
     }
 
-    await showConfirm(data);
+    if (eTableType === 'NORMAL') {
+        await showConfirm(data);
+    } else {
+        await checkVipTable();
+        if (checkVip === false) {
+            await showConfirm(data);
+        }
+    }
 })
 
 async function showConfirm(data) {
-    let customer = await getCurrentCustomer();
+
     if (customer.email === null) {
         webToast.Danger({
-            status: 'Bạn chưa đăng nhập!',
-            message: '',
+            status: 'Cần đăng nhập trước!',
+            message: 'Hãy đăng nhập để đặt bàn.',
             delay: 2000,
             align: 'topright'
-        })
+        });
         return;
     }
+
     const formattedTime = formatDateTime(data.time);
 
     let bodyHTML =
@@ -110,15 +108,12 @@ async function showConfirm(data) {
                     <p class="col-6">Person: <span>${data.person}</span></p>
                     <p class="col-6">Message: <span>${data.message}</span></p>
                 </div>
-               
+   
     `
     eConfirm_body.innerHTML = bodyHTML;
     $('#exampleModalLong').modal('show');
 }
-
 async function createBill(data) {
-    let customer = await getCurrentCustomer();
-
     data = {
         customerName: customer.name,
         customerPhoneNumber: customer.phoneNumber,
@@ -129,7 +124,7 @@ async function createBill(data) {
         tableType: data.tableType,
         message: data.message
     }
-    console.log(data);
+    // console.log(data);
     const res = await fetch('api/booking', {
         method: 'POST',
         headers: {
@@ -153,13 +148,37 @@ async function createBill(data) {
             align: 'topright'
         })
     }
-
 }
+
+async function checkVipTable() {
+    try {
+        const res = await getVipTableAvailable();
+
+        if (!res.ok) {
+            webToast.Danger({
+                status: 'Hiện tại đang hết bàn VIP!',
+                message: '',
+                delay: 2000,
+                align: 'topright'
+            })
+            checkVip = true;
+        } else {
+            checkVip = false;
+        }
+    } catch (error) {
+        webToast.Danger({
+            status: 'Đã có lỗi khi call API!',
+            message: error,
+            delay: 10000,
+            align: 'topright'
+        })
+    }
+}
+
 
 eDoneBtn.onclick = async () => {
     await createBill(data);
 }
-
 
 
 // Format display time
