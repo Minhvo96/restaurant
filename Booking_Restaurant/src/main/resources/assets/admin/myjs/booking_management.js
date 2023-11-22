@@ -11,7 +11,6 @@ window.onload = async () => {
     document.getElementById("menu-booking").classList.add("active");
     bookingStatus = await getBookingStatus();
     await loadBookings();
-    // customers = await getAllCustomers();
     await renderTable();
 }
 

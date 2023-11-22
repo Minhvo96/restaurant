@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blog</title>
+    <title>Login</title>
     <th:block th:replace="~{layoutUser :: header-link}"></th:block>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate text-center mb-4">
-                <h1 class="mb-2 bread">Login & Register</h1>
+                <h1 class="mb-2 bread">Login</h1>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
             <div class="col-md-12 d-flex featured-top">
                 <div class="col-md-3"></div>
 
-                <div class="col-md-6 d-flex align-items-center">
+                <div class="col-md-6 d-flex align-items-center form-container">
 
                     <th:block th:fragment="form-login">
                         <form
@@ -38,7 +38,6 @@
                                 role="form"
                                 style="width: 100%"
                         >
-                            <h2>Login Form</h2>
                             <div th:if="${param.error}">
                                 <div class="alert alert-danger">Invalid Email or Password</div>
                             </div>
@@ -91,10 +90,8 @@
 
 <th:block th:replace="~{layoutUser :: my-footer}"></th:block>
 
-
 <!-- loader -->
 <th:block th:replace="~{layoutUser :: my-loader}"></th:block>
-
 
 <th:block th:replace="~{layoutUser :: my-script}"></th:block>
 </body>

@@ -134,7 +134,35 @@ function validateForm() {
 $('#phoneNumber').on('click', () => {
     $('.text-danger').addClass('hide')
 })
-
 $('#email').on('click', () => {
     $('.text-danger').addClass('hide')
 })
+
+
+// Validate below inputs
+$('#register-form').validate({
+    rules: {
+        phoneNumber: {
+            required: true,
+            isNumber: true
+        },
+        email: {
+            required: true,
+            isEmail: true
+        }
+    },
+    messages: {
+        phoneNumber: {
+            required: 'Vui lòng nhập số điện thoại'
+        },
+        email: {
+            required: 'Vui lòng nhập email đầy đủ'
+        }
+    }
+})
+$.validator.addMethod("isEmail", function (value, element) {
+    return this.optional(element) || /^[a-z]+@[a-z]+\.[a-z]+$/i.test(value);
+}, "Vui lòng nhập đúng định dạng email: abc@co.cc");
+$.validator.addMethod("isNumber", function (value, element) {
+    return this.optional(element) || /^[0-9]*$/i.test(value);
+}, "Vui lòng nhập số điện thoại bằng ký tự số");

@@ -41,6 +41,7 @@ public class SpringSecurity {
                                 .requestMatchers("/booking").hasAnyRole("ADMIN")
                                 .requestMatchers("/menu").permitAll()
                                 .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("/reservation").permitAll()
                                 .requestMatchers("/assets/**").permitAll()
                                 .requestMatchers("/home").permitAll()
                                 .anyRequest().authenticated()
@@ -72,7 +73,7 @@ public class SpringSecurity {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService) // config để biết class này dùng để check user login
-                .passwordEncoder(passwordEncoder()); // loại mã hóa password
+                .passwordEncoder(passwordEncoder()); // loại mã hóa password, check password đã được mã hóa
     }
 
     @Bean

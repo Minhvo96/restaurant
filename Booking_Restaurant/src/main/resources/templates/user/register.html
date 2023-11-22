@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blog</title>
+    <title>Register</title>
     <th:block th:replace="~{layoutUser :: header-link}"></th:block>
 </head>
 <body>
@@ -26,19 +26,18 @@
         <div class="row no-gutters">
             <div class="col-md-12 d-flex featured-top">
                 <div class="col-md-3"></div>
-                <div class="col-md-6 d-flex align-items-center">
+                <div class="col-md-6 d-flex align-items-center form-container">
                     <th:block th:fragment="form-search" >
                         <form
                                 th:action="@{/register}"
                                 th:object="${user}"
                                 class="request-form bg-dark-blue"
-                                id="login-form"
+                                id="register-form"
                                 method="post"
                                 role="form"
                                 style="width: 100%"
                                 onsubmit="return validateForm()"
                         >
-                            <h2>Register Form</h2>
                             <div class="form-group">
                                 <label for="fullName" class="label">Full Name</label>
                                 <input
@@ -76,7 +75,7 @@
                                         name="email"
                                         placeholder="Enter Email Address"
                                         th:field="*{email}"
-                                        type="email"
+                                        type="text"
                                 />
                                 <p th:errors="*{email}" class="text-danger"
                                    th:if="${#fields.hasErrors('email')}"></p>

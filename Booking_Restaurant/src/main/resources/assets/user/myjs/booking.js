@@ -79,11 +79,11 @@ makeReservationButton.addEventListener('click', async function () {
 
 async function showConfirm(data) {
 
-    if (customer.email === null) {
+    if (!customer.email) {
         webToast.Danger({
             status: 'Cần đăng nhập trước!',
             message: 'Hãy đăng nhập để đặt bàn.',
-            delay: 2000,
+            delay: 3000,
             align: 'topright'
         });
         return;

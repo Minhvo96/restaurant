@@ -9069,7 +9069,7 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-  padding: 7em 0;
+  /*padding: 7em 0;*/
   position: relative; }
 
 .ftco-no-pt {
@@ -9810,4 +9810,16 @@ textarea.form-control {
 
 .hide {
   display: none;
+}
+
+label.error {
+  color: red;
+}
+
+.form-container {
+  margin: 50px 0px;
+  border: 10px solid #c8a97e; /* Màu kem */
+  border-radius: 10px; /* Bo tròn góc */
+  padding: 20px; /* Khoảng cách từ viền đến nội dung bên trong */
+  background-color: #f8f9fa; /* Màu nền */
 }
