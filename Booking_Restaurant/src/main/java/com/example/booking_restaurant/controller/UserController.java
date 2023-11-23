@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping()
 @AllArgsConstructor
 public class UserController {
 
@@ -21,6 +21,7 @@ public class UserController {
     public ModelAndView indexUser(@PageableDefault(size = 8) Pageable pageable, @RequestParam(defaultValue = "") String search) {
         ModelAndView view = new ModelAndView("user/index");
         view.addObject("food", foodService.getAll(pageable, search));
+        view.addObject("tableType", TableType.values());
         view.addObject("active", "home");
         return view;
     }
@@ -42,18 +43,18 @@ public class UserController {
         view.addObject("active","about");
         return view;
     }
-    @GetMapping("blog")
-    public ModelAndView blog() {
-        ModelAndView view = new ModelAndView("login");
-        view.addObject("active","blog");
-        return view;
-    }
-    @GetMapping("contact")
-    public ModelAndView contact() {
-        ModelAndView view = new ModelAndView("user/contact");
-        view.addObject("active","contact");
-        return view;
-    }
+//    @GetMapping("blog")
+//    public ModelAndView blog() {
+//        ModelAndView view = new ModelAndView("login");
+//        view.addObject("active","blog");
+//        return view;
+//    }
+//    @GetMapping("contact")
+//    public ModelAndView contact() {
+//        ModelAndView view = new ModelAndView("403");
+//        view.addObject("active","contact");
+//        return view;
+//    }
 
     @GetMapping("reservation")
     public ModelAndView reservation() {
@@ -62,4 +63,15 @@ public class UserController {
         view.addObject("tableType", TableType.values());
         return view;
     }
+
+    @GetMapping("/403")
+    public ModelAndView accessDenied() {
+        return new ModelAndView("user/403");
+    }
+
+    @GetMapping("/errors")
+    public ModelAndView handleError() {
+        return new ModelAndView("user/errors");
+    }
+
 }

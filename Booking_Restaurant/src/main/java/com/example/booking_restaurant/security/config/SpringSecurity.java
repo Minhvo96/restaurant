@@ -1,4 +1,5 @@
 package com.example.booking_restaurant.security.config;
+
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,11 +32,7 @@ public class SpringSecurity {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
-//                                .requestMatchers("/user/**").permitAll()
-//                                .requestMatchers("/errors", "/403").permitAll()
-//                                .requestMatchers("/admin/public").permitAll()
-//                                .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-//                                .requestMatchers("user/api/customer-detail/**").permitAll()
+                                .requestMatchers("/403", "/errors").permitAll()
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/food").hasAnyRole("ADMIN")
                                 .requestMatchers("/booking").hasAnyRole("ADMIN")
@@ -58,14 +55,14 @@ public class SpringSecurity {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                                 .logoutSuccessUrl("/?message=Logout%20successfully")
-                );
-//                .exceptionHandling()
-//                        .accessDeniedHandler((request, response, accessDeniedException) -> {
-//                            response.sendRedirect("/403");
-//                        })
-//                .authenticationEntryPoint((request, response, authException) -> {
-//                    response.sendRedirect("/errors");
-//                });
+                )
+                .exceptionHandling()
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    response.sendRedirect("/403");
+                })
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.sendRedirect("/errors");
+                });
         return http.build();
     }
 

@@ -25,18 +25,16 @@ function renderBookingTable(bookings) {
     let bookingTableHTML = '';
 
     bookings.forEach((booking, index) => {
-        // Tạo một dòng mới cho mỗi hóa đơn
+        // Tạo một dòng mới cho mỗi booking
         bookingTableHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>
+                    <td>
                         ${booking.customerName}
-                    </td>
-                    
+                    </td>          
                     <td>
                         ${booking.customerPhoneNumber}
                     </td>
-
                     <td>
                         ${booking.customerEmail}
                     </td>
@@ -62,7 +60,6 @@ function renderBookingTable(bookings) {
                     </td>         
             </tr>
         `;
-
 
     });
     tableBody.innerHTML = bookingTableHTML;
