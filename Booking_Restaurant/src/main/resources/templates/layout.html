@@ -204,11 +204,11 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
                           <div class="avatar avatar-online">
-                            <img src="/assets/admin/img/avatars/5.png" alt class="w-px-40 h-auto rounded-circle" />
+                            <img src="/assets/admin/img/avatars/5.png" alt class="w-px-40 h-auto rounded-circle"/>
                           </div>
                         </div>
                         <div class="flex-grow-1">
-                          <span class="fw-semibold d-block">CCC</span>
+                          <span class="fw-semibold d-block" id="adminName"></span>
                           <small class="text-muted">Admin</small>
                         </div>
                       </div>
@@ -278,26 +278,26 @@
                document.write(new Date().getFullYear());
              </script>
              , made with ❤️ by
-             <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+             <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Team MĐT</a>
            </div>
-           <div>
-             <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-             <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+<!--           <div>-->
+<!--             <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>-->
+<!--             <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>-->
 
-             <a
-                     href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                     target="_blank"
-                     class="footer-link me-4"
-             >Documentation</a
-             >
+<!--             <a-->
+<!--                     href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"-->
+<!--                     target="_blank"-->
+<!--                     class="footer-link me-4"-->
+<!--             >Documentation</a-->
+<!--             >-->
 
-             <a
-                     href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                     target="_blank"
-                     class="footer-link me-4"
-             >Support</a
-             >
-           </div>
+<!--             <a-->
+<!--                     href="https://github.com/themeselection/sneat-html-admin-template-free/issues"-->
+<!--                     target="_blank"-->
+<!--                     class="footer-link me-4"-->
+<!--             >Support</a-->
+<!--             >-->
+<!--           </div>-->
          </div>
        </footer>
        <!-- / Footer -->
@@ -314,14 +314,14 @@
        </div>
        <!-- / Layout wrapper -->
 
-       <div class="buy-now">
-         <a
-                 href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-                 target="_blank"
-                 class="btn btn-danger btn-buy-now"
-         >Upgrade to Pro</a
-         >
-       </div>
+<!--       <div class="buy-now">-->
+<!--         <a-->
+<!--                 href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"-->
+<!--                 target="_blank"-->
+<!--                 class="btn btn-danger btn-buy-now"-->
+<!--         >Upgrade to Pro</a-->
+<!--         >-->
+<!--       </div>-->
 
        <!-- Core JS -->
        <!-- build:js assets/vendor/js/core.js -->
@@ -346,6 +346,21 @@
 
        <!-- Place this tag in your head or just before your close body tag. -->
        <script async defer src="https://buttons.github.io/buttons.js"></script>
+       <script>
+         // Hiển thị tên Admin
+         let customer  = {} ;
+         async function getCurrentCustomer() {
+           let res = await fetch("http://localhost:8080/user/api/customer-detail");
+           customer = await res.json()
+           console.log(customer)
+           return customer;
+         }
+         let adminName= document.getElementById('adminName');
+         getCurrentCustomer().then(() => {
+           let fullNameUser = customer.name;
+           adminName.textContent = fullNameUser;
+         });
+       </script>
        </body>
      </th:block>   <!-- / Content -->
 

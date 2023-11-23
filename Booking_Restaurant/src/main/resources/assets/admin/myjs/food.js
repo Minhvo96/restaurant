@@ -225,7 +225,6 @@ async function editFood(data) {
         body: JSON.stringify(data)
     })
 }
-
 async function deleteFood(id) {
     const confirmBox = webToast.confirm("Are you sure to delete Food " + id + "?");
     confirmBox.click(async function(){
@@ -398,7 +397,6 @@ async function previewImage(evt) {
         }
     }
 }
-
 async function previewImageFile(file){
     const reader = new FileReader();
     reader.onload = function (){
@@ -422,7 +420,6 @@ async function previewImageFile(file){
     };
     reader.readAsDataURL(file);
 }
-
 async function deleteImage(id) {
     try {
         const response = await fetch(`api/foodImages/${id}`, {
@@ -510,3 +507,5 @@ function enableSaveChangesButton() {
     const saveChangesButton = document.getElementById('saveChangesButton');
     saveChangesButton.disabled = false;
 }
+
+
