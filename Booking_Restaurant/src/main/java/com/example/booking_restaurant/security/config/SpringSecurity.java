@@ -54,7 +54,6 @@ public class SpringSecurity {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-                                .logoutSuccessUrl("/?message=Logout%20successfully")
                 )
                 .exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {

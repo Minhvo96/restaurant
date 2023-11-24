@@ -26,6 +26,8 @@ function renderBookingTable(bookings) {
 
     bookings.forEach((booking, index) => {
         // Tạo một dòng mới cho mỗi booking
+        const bookingTime = new Date(booking.time);
+        const formattedDateTime = formatLocalDateTime(bookingTime);
         bookingTableHTML += `
             <tr>
                 <td>${index + 1}</td>
@@ -76,6 +78,7 @@ function renderSelectStatus(booking) {
         option.value = item;
         option.innerHTML = item;
         option.selected = booking.status === item;
+        option.classList.add(item);
 
         select.appendChild(option);
         select.classList.add(booking.status);
@@ -142,12 +145,10 @@ function formatLocalDateTime(localDateTime) {
         month: '2-digit',
         year: 'numeric'
     };
-
     return new Intl.DateTimeFormat('en-US', options).format(localDateTime);
 }
 
-const bookingTime = new Date("2023-11-17T12:34:56");
-const formattedDateTime = formatLocalDateTime(bookingTime);
+
 
 
 

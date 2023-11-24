@@ -34,3 +34,23 @@
     right: 0;
     top: 0;
 }
+
+.table td {
+    cursor: pointer;
+}
+.PENDING {
+    background: yellow; /* Màu nền là màu vàng */
+    border: yellow; /* Màu viền là màu vàng */
+    font-weight: bold; /* Độ đậm chữ */
+    color: black; /* Màu chữ là màu đen */
+}
+.CONFIRMED{
+    background: aquamarine;
+    border: aquamarine;
+    font-weight: bold;
+}
+.CANCELLED{
+    background: darkgrey;
+    border: darkgrey;
+    font-weight: bold;
+}
